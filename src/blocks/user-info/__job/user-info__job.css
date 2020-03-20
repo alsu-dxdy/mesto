@@ -1,0 +1,13 @@
+.user-info__job {
+  /*margin: 20px 0 0 0;*/
+  margin: 20px 0 42px 0;
+  /*24+18=42*/
+  font-size: 20px;
+  line-height: 25px;
+}
+
+@media screen and (max-width: 980px) {
+  .user-info__job {
+    margin: 20px 0 0 0;
+  }
+}

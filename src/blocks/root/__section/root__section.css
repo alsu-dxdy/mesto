@@ -1,0 +1,11 @@
+.root__section {
+  width: calc(100% - 400px);
+  margin: auto;
+  /*border: 1px solid red;*/
+}
+
+@media screen and (max-width: 980px) {
+  .root__section {
+    width: 90%;
+  }
+}

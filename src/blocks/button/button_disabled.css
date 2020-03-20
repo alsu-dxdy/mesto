@@ -1,0 +1,17 @@
+.popup__button_save_new_info.button_disabled {
+  background: #FFFFFF;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  /*color: #000000;
+      opacity: 0.2;*/
+  color: rgba(0, 0, 0, .2);
+}
+
+.popup__button.button_disabled {
+  background: #FFFFFF;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  /*color: #000000;
+      opacity: 0.2;*/
+  color: rgba(0, 0, 0, .2);
+}

@@ -1,0 +1,29 @@
+.place-card__like-icon {
+  background: url(../../../images/like-inactive.svg) center no-repeat;
+  background-color: transparent;
+  border: none;
+  width: 21px;
+  height: 19px;
+  cursor: pointer;
+  transition: transform .3s linear;
+  margin-bottom: 3px;
+}
+
+.place-card__like-icon_liked {
+  background-image: url(../../../images/like-active.svg);
+}
+
+.place-card__like-icon:hover {
+  transform: scale(1.03);
+}
+
+.place-card__count {
+  /*border: 1px solid red;*/
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  margin: 0;
+  width: 10px;
+}
