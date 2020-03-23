@@ -1,4 +1,4 @@
-class Api {
+export default class Api {
   constructor(options) {
     this.options = options;
   }
@@ -11,13 +11,14 @@ class Api {
   }
 
   getInitialCards() {
-    return fetch(this.options.baseUrl + `/cards`, {
-      method: 'GET',
-      headers: {
-        authorization: this.options.headers.authorization
-      }
-    })
-      /*
+    return (
+      fetch(this.options.baseUrl + `/cards`, {
+        method: "GET",
+        headers: {
+          authorization: this.options.headers.authorization
+        }
+      })
+        /*
         Можно лучше: проверка ответа сервера и преобразование из json
         дублируется во всех методах класса Api, лучше вынести в отдельный метод:
           _getResponseData(res) {
@@ -29,95 +30,87 @@ class Api {
         Подчеркивание в начале имени метода говорит о том, что метод является приватным, т.е.
         не используется вне класса Api   
       */
-      .then(res => this._getResponseData(res));
+        .then(res => this._getResponseData(res))
+    );
   }
 
   getUserInfo() {
     return fetch(this.options.baseUrl + `/users/me`, {
-      method: 'GET',
+      method: "GET",
       headers: {
         authorization: this.options.headers.authorization
       }
-    })
-      .then(res => this._getResponseData(res));
+    }).then(res => this._getResponseData(res));
   }
 
   sendServerUserInfo(name, job) {
     return fetch(this.options.baseUrl + `/users/me`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
         authorization: this.options.headers.authorization,
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         name: name,
         about: job
       })
-    })
-      .then(res => this._getResponseData(res));
+    }).then(res => this._getResponseData(res));
   }
 
   addCard(name, url) {
     return fetch(this.options.baseUrl + `/cards`, {
-      method: 'POST',
+      method: "POST",
       headers: {
         authorization: this.options.headers.authorization,
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         name: name,
         link: url
       })
-    })
-      .then(res => this._getResponseData(res));
+    }).then(res => this._getResponseData(res));
   }
 
   deleteCard(cardId) {
     //debugger;
     return fetch(this.options.baseUrl + `/cards/${cardId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
         authorization: this.options.headers.authorization
       }
-    })
-      .then(res => this._getResponseData(res));
+    }).then(res => this._getResponseData(res));
   }
 
   addLike(cardId) {
     //debugger;
     return fetch(this.options.baseUrl + `/cards/like/${cardId}`, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
         authorization: this.options.headers.authorization
       }
-    })
-      .then(res => this._getResponseData(res));
+    }).then(res => this._getResponseData(res));
   }
 
   removeLike(cardId) {
     //debugger;
     return fetch(this.options.baseUrl + `/cards/like/${cardId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
         authorization: this.options.headers.authorization
       }
-    })
-      .then(res => this._getResponseData(res));
+    }).then(res => this._getResponseData(res));
   }
 
   sendServerAvatar(url) {
     return fetch(this.options.baseUrl + `/users/me/avatar`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
         authorization: this.options.headers.authorization,
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         avatar: url
       })
-    })
-      .then(res => this._getResponseData(res));
+    }).then(res => this._getResponseData(res));
   }
-
 }
-
