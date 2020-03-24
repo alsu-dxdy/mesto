@@ -12,6 +12,5 @@ export default class Popup {
 
   close() {
     this.popup.classList.remove("popup_is-opened");
-    //this.popup.querySelector('button').textContent = 'Сохранить';
   }
 }

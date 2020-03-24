@@ -15,7 +15,7 @@
     <div class="root">
       <header class="header root__section">
         <img
-          src="<%=require('./images/logo.svg')%>"
+          src="<%=require('./images/logo.svg').default%>"
           alt="mesto logo"
           class="logo"
         />
@@ -24,8 +24,8 @@
         <div class="user-info">
           <div class="user-info__photo"></div>
           <div class="user-info__data">
-            <h1 class="user-info__name"></h1>
-            <p class="user-info__job"></p>
+            <h1 class="user-info__name">Alsu</h1>
+            <p class="user-info__job">Student</p>
           </div>
           <button class="button_edit_profile">Edit</button>
           <button class="button user-info__button">+</button>
@@ -37,7 +37,7 @@
       <div class="popup">
         <div class="popup__content">
           <img
-            src="<%=require('./images/close.svg')%>"
+            src="<%=require('./images/close.svg').default%>"
             alt=""
             class="popup__close"
           />
@@ -74,7 +74,7 @@
       <div class="popup popup_edit">
         <div class="popup__content">
           <img
-            src="<%=require('./images/close.svg')%>"
+            src="<%=require('./images/close.svg').default%>"
             alt=""
             class="popup__close"
           />
@@ -119,7 +119,7 @@
         <div class="popup_image_container">
           <img src="#" alt="" class="popup_image_big" />
           <img
-            src="<%=require('./images/close.svg')%>"
+            src="<%=require('./images/close.svg').default%>"
             alt=""
             class="popup__close"
           />
@@ -130,10 +130,10 @@
       <div class="popup popup_avatar">
         <div class="popup__content">
           <img
-            src="<%=require('./images/close.svg')%>"
+            src="<%=require('./images/close.svg').default%>"
             alt=""
             class="popup__close"
-          />
+          >
           <h3 class="popup__title">Обновить аватар</h3>
           <form class="popup__form popup__form_avatar" name="new_avatar">
             <div class="input-container">

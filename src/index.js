@@ -1,7 +1,7 @@
 //(() => {
-import API from "./js/API";
 import Card from "./js/Card";
 import CardList from "./js/CardList";
+import Api from "./js/API";
 import FormValidator from "./js/FormValidator";
 import Popup from "./js/Popup";
 import PopupImage from "./js/PopupImage";
@@ -9,13 +9,8 @@ import PopupWithForm from "./js/PopupWithForm";
 import UserInfo from "./js/UserInfo";
 
 import "./style.css";
-import img from "./images/close.svg";
-/*import img from "./images/like-active.svg";
-import img from "./images/like-inactive.svg";
-import img from "./images/logo.svg";
-import img from "./images/trash-icon.svg";*/
+import {serverUrl} from './config';
 
-//const myID = "767ab2acd59351e1d6e3d7fd";
 const placesList = document.querySelector(".places-list"); //placesList - родитель кнопки "Лайк" и "Корзина"
 const newCardForm = document.querySelector(".popup__form");
 const editProfileForm = document.querySelector(".popup__form_edit");
@@ -28,15 +23,6 @@ const popupImageBig = document.querySelector(".popup_image_big"); // карти�
 const userInfoPhoto = document.querySelector(".user-info__photo"); //круглый аватар
 
 /*Экземпляры классов*/
-
-const api = new Api({
-  baseUrl: "https://praktikum.tk/cohort8",
-  headers: {
-    authorization: "24efeac8-6c91-4328-9f60-c8c7ed524d9c",
-    "Content-Type": "application/json"
-  }
-});
-
 const card = new Card();
 const cardList = new CardList(placesList, card);
 
@@ -54,7 +40,14 @@ const userInfo = new UserInfo(
   document.querySelector(".user-info__job"),
   document.querySelector(".user-info__photo")
 );
-
+const api = new Api({
+  baseUrl: "https://praktikum.tk/cohort8",
+  headers: {
+    authorization: "24efeac8-6c91-4328-9f60-c8c7ed524d9c",
+    "Content-Type": "application/json"
+  }
+});
+//const myID = "767ab2acd59351e1d6e3d7fd";
 /*Экземпляры для валидации (слушатели внутри класса FormValidator)*/
 const formValidNewPlace = new FormValidator(document.querySelector(".popup"));
 const formValidEditProfile = new FormValidator(
