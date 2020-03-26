@@ -2,37 +2,12 @@ export default class CardList {
   constructor(container, card) {
     this.container = container;
     this.card = card;
-    //this.arrayCards = arrayCards;
   }
 
   addCard(cardElement) {
     this.container.appendChild(cardElement);
   }
-  /*
-        render(array, userID) {
-            for (let data of array) {
-    
-                if (data.owner._id === userID) {
-                    const newCard = this.card.create(data.name, data.link, data.likes.length, data.owner._id, data._id);
-                    //debugger;
-                    newCard.querySelector('.place-card__delete-icon').classList.add('place-card__delete-icon_visible');
-                    this.container.appendChild(newCard);
-    
-                }
-            }
-        }
-        */
 
-  /*
-    render(array) {
-        for (let data of array) {
-            const newCard = this.card.create(data.name, data.link, data.likes.length, data.owner._id, data._id);
-            //debugger;
-            newCard.querySelector('.place-card__delete-icon').classList.add('place-card__delete-icon_visible');
-            this.container.appendChild(newCard);
-
-        }
-    }*/
   render(array, userID) {
     for (let i = 0; i < array.length; i++) {
       const newCard = this.card.create(
@@ -43,7 +18,6 @@ export default class CardList {
         array[i]._id,
         array[i].likes
       );
-      //debugger;
 
       //проверяю наличие своего лайка
       const isMyLike = array[i].likes.some(function(user) {

@@ -1,11 +1,11 @@
 {
   "name": "mesto",
   "version": "0.0.1",
-  "description": "",
+  "description": "Interactive page where you can add photos, delete them, and put likes",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf dist && webpack --mode production",
-    "dev": "webpack-dev-server --mode development --open --watch",
+    "build": "cross-env NODE_ENV=production rimraf dist && webpack --mode production",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --watch",
     "deploy": "cross-env NODE_ENV=production gh-pages -d dist"
   },
   "repository": {

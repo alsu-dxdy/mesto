@@ -72,7 +72,6 @@ export default class Api {
   }
 
   deleteCard(cardId) {
-    //debugger;
     return fetch(this.options.baseUrl + `/cards/${cardId}`, {
       method: "DELETE",
       headers: {
@@ -82,7 +81,6 @@ export default class Api {
   }
 
   addLike(cardId) {
-    //debugger;
     return fetch(this.options.baseUrl + `/cards/like/${cardId}`, {
       method: "PUT",
       headers: {
@@ -92,7 +90,6 @@ export default class Api {
   }
 
   removeLike(cardId) {
-    //debugger;
     return fetch(this.options.baseUrl + `/cards/like/${cardId}`, {
       method: "DELETE",
       headers: {

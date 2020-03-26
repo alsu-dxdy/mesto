@@ -1,6 +1,5 @@
 export default class FormValidator {
   constructor(popup) {
-    //debugger;
     this.form = popup.querySelector("form");
     this.button = this.form.querySelector("button");
     this.form.addEventListener("input", this.setEventListeners.bind(this));
@@ -8,7 +7,6 @@ export default class FormValidator {
 
   // checkInputValidity —  валидация поля.
   checkInputValidity(input, error) {
-    //debugger;
 
     if (input.validity.valueMissing) {
       return (error.textContent = "Это обязательное поле");
@@ -44,7 +42,6 @@ export default class FormValidator {
   }
 
   setEventListeners(event) {
-    //debugger;
     this.checkInputValidity(
       event.target,
       event.target.closest("div").querySelector(".input__error")

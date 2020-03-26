@@ -1,7 +1,6 @@
 export default class Card {
   //метод like общий для Постановки и снятия лайка
   like(e, counter, counterContainer) {
-    //debugger;
     if (e.target.classList.contains("place-card__like-icon")) {
       //клик по сердечку
       e.target.classList.toggle("place-card__like-icon_liked");
@@ -11,7 +10,6 @@ export default class Card {
 
   //Удаление карточки
   remove(e) {
-    //debugger;
     if (e.target.classList.contains("place-card__delete-icon_visible")) {
       //клик по корзине
       // Надо исправить: вы обращаетесь в классе к переменной  placesList объявленной глобально, так делать нельзя

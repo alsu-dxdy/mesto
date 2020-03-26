@@ -1,4 +1,3 @@
-//(() => {
 import Card from "./js/Card";
 import CardList from "./js/CardList";
 import Api from "./js/API";
@@ -11,7 +10,8 @@ import UserInfo from "./js/UserInfo";
 import "./style.css";
 import {serverUrl} from './config';
 
-const placesList = document.querySelector(".places-list"); //placesList - родитель кнопки "Лайк" и "Корзина"
+(() => {
+  const placesList = document.querySelector(".places-list"); //placesList - родитель кнопки "Лайк" и "Корзина"
 const newCardForm = document.querySelector(".popup__form");
 const editProfileForm = document.querySelector(".popup__form_edit");
 const formAvatar = document.querySelector(".popup__form_avatar");
@@ -23,6 +23,13 @@ const popupImageBig = document.querySelector(".popup_image_big"); // карти�
 const userInfoPhoto = document.querySelector(".user-info__photo"); //круглый аватар
 
 /*Экземпляры классов*/
+const api = new Api({
+  baseUrl: `${serverUrl}`,
+  headers: {
+    authorization: "24efeac8-6c91-4328-9f60-c8c7ed524d9c",
+    "Content-Type": "application/json"
+  }
+});
 const card = new Card();
 const cardList = new CardList(placesList, card);
 
@@ -40,14 +47,8 @@ const userInfo = new UserInfo(
   document.querySelector(".user-info__job"),
   document.querySelector(".user-info__photo")
 );
-const api = new Api({
-  baseUrl: "https://praktikum.tk/cohort8",
-  headers: {
-    authorization: "24efeac8-6c91-4328-9f60-c8c7ed524d9c",
-    "Content-Type": "application/json"
-  }
-});
-//const myID = "767ab2acd59351e1d6e3d7fd";
+
+const myID = "767ab2acd59351e1d6e3d7fd";// нужна для удаления карточки
 /*Экземпляры для валидации (слушатели внутри класса FormValidator)*/
 const formValidNewPlace = new FormValidator(document.querySelector(".popup"));
 const formValidEditProfile = new FormValidator(
@@ -117,7 +118,6 @@ newCardForm.addEventListener("submit", function(event) {
 
 // Удаление карточки
 placesList.addEventListener("click", function(event) {
-  //debugger;
   if (
     event.target.classList.contains("place-card__delete-icon_visible") &&
     event.target.closest(".place-card").getAttribute("ownerID") === myID
@@ -133,8 +133,7 @@ placesList.addEventListener("click", function(event) {
         .catch(err => {
           console.log(`Удаление неуспешно: ${err}`);
         });
-      //debugger;
-      //card.remove();
+      
       card.remove(event);
     }
   }
@@ -172,7 +171,6 @@ placesList.addEventListener("click", function(event) {
 editProfileForm.addEventListener("submit", function(event) {
   event.preventDefault();
   document.querySelector(".popup__button_save").textContent = "Загрузка...";
-  //debugger;
   api
     .sendServerUserInfo(
       editProfileForm.username.value,
@@ -204,30 +202,6 @@ formAvatar.addEventListener("submit", function(event) {
       console.log(`Ошибка: ${err}`);
     });
 });
-//})();
+})();
 
-/*
-  Хорошая работа, класс Api создан, он обеспечивает методы для доступа к серверу, сам не меняет страницу
-  и возвращает из своих методов промисы с данными. Обработка ошибок располагается там где нужно.
-
-  Можно лучше:
-  - все изменения на странице должны происходить, только после того, как
-  сервер ответил подтверждением. Если сервер не ответил, или ответил ошибкой, а
-  данные на странице сохранятся, то это может ввести пользователя в заблуждение
-  Данные пользователя сохраняются и карточка добавляется на страницу после ответа сервера,
-  закрытие попапа также лучше делать только после ответа сервера
-
-  - проверка ответа сервера и преобразование из json
-  дублируется во всех методах класса Api, лучше вынести в отдельный метод
-
-
-  Для закрепления полученных знаний советую сделать и оставшуюся часть задания.
-  Если у Вас будет свободное время попробуйте переписать работу с сервером
-  применив async/await для работы с асинхронными запросами.
-  https://learn.javascript.ru/async-await
-  https://habr.com/ru/company/ruvds/blog/414373/
-  https://www.youtube.com/watch?v=SHiUyM_fFME
-  Это часто используется в реальной работе
-
-  Успехов в дальнейшем обучении!
-*/
+ 
