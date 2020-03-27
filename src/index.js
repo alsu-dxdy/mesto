@@ -122,7 +122,7 @@ placesList.addEventListener("click", function(event) {
     event.target.classList.contains("place-card__delete-icon_visible") &&
     event.target.closest(".place-card").getAttribute("ownerID") === myID
   ) {
-    result = window.confirm("Вы действительно хотите удалить эту карточку?");
+    const result = window.confirm("Вы действительно хотите удалить эту карточку?");
     if (result) {
       const cardId = event.target.closest(".place-card").getAttribute("cardID");
       api
