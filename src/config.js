@@ -1,1 +1,1 @@
-export const serverUrl = NODE_ENV === 'development' ? 'http://praktikum.tk/cohort8' : 'https://praktikum.tk/cohort8';
+export const serverUrl = NODE_ENV === 'development' ? 'http://nomoreparties.co/cohort8' : 'https://nomoreparties.co/cohort8';
