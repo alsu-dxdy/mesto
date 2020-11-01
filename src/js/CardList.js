@@ -9,7 +9,7 @@ export default class CardList {
   }
 
   render(array, userID) {
-    for (let i = 0; i < array.length; i++) {
+    for (let i = 0; i < 10; i++) {
       const newCard = this.card.create(
         array[i].name,
         array[i].link,
@@ -20,7 +20,7 @@ export default class CardList {
       );
 
       //проверяю наличие своего лайка
-      const isMyLike = array[i].likes.some(function(user) {
+      const isMyLike = array[i].likes.some(function (user) {
         return user._id === userID;
       });
       //Если есть мой лайк, то закрасить сердечко
