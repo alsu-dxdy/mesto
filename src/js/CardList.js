@@ -27,7 +27,7 @@ export default class CardList {
       if (isMyLike) {
         newCard
           .querySelector(".place-card__like-icon")
-          .classList.toggle("place-card__like-icon_liked");
+          .classList.add("place-card__like-icon_liked");
       }
       //Если карта - моя, то сделать корзину видимой
       if (array[i].owner._id === userID) {
