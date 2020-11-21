@@ -7,7 +7,7 @@
     "build": "cross-env NODE_ENV=production rimraf dist && webpack --mode production",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --watch",
     "deploy": "cross-env NODE_ENV=production gh-pages -d dist",
-    "deployserver": "scp -r ./dist/* alsu-dxdy@84.201.131.208:/home/alsu-dxdy/mesto-frontend"
+    "deployserver": "scp -r ./dist/* alsu-dxdy@84.201.156.80:/home/alsu-dxdy/mesto-frontend"
   },
   "repository": {
     "type": "git",
