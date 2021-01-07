@@ -1,5 +1,5 @@
 # Mesto
-Frontend проекта Mesto
+Frontend интерактивного приложения для публикации фото - Mesto.
 
 ### Описание проекта:
 Интерактивная страница для публикации фото, в которой реализовано:
@@ -18,7 +18,10 @@ https://alsu-dxdy.github.io/mesto/
 - Webpack
 - HTML5, CSS3
 
-### Чтобы начать работу с проектом:
+### Планы по развитию проекта:
+Реализовать frontend для регистрации, авторизации в личном кабинете, для которых backend уже реализован.
+
+### Инструкция по запуску frontend:
 1) Клонировать репозиторий:
 ```
 git clone https://github.com/alsu-dxdy/mesto
@@ -32,4 +35,5 @@ npm install
 npm run dev
 ```
 
-![Praktikum Logo](https://im0-tub-ru.yandex.net/i?id=6cc743358061229b4e5be93287201a81&n=13&exp=1)
+### Инструкция по запуску backend
+находится [здесь](https://github.com/alsu-dxdy/mesto_server_with_db_jwt)
