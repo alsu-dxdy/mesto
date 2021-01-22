@@ -79,6 +79,7 @@ import { serverUrl } from './config';
   //Открытие попапа с картинкой
   placesList.addEventListener("click", popupImage.open.bind(popupImage));
 
+  // Отображение массива карточек
   window.addEventListener("load", () => {
     Promise.all([api.getInitialCards(), api.getUserInfo()])
       .then(
