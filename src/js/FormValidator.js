@@ -2,24 +2,18 @@ export default class FormValidator {
   constructor(popup) {
     this.form = popup.querySelector(".popup__form_edit");
     this.button = this.form.querySelector("button");
-    console.log(
-      "🚀 ~ file: FormValidator.js ~ line 5 ~ FormValidator ~ constructor ~ this.button",
-      this.button
-    );
+    // this.name = document.querySelector("name");
+    // this.job = document.querySelector("job");
+
     this.form.addEventListener("input", this.setEventListeners.bind(this));
   }
 
-  // checkInputValidity —  валидация поля.
   checkInputValidity(input, error) {
     if (input.validity.valueMissing) {
-      this.button.setAttribute("disabled", true);
-      this.button.classList.add("button_disabled");
       return (error.textContent = "Это обязательное поле");
     }
 
     if (input.validity.tooShort) {
-      this.button.setAttribute("disabled", true);
-      this.button.classList.add("button_disabled");
       return (error.textContent = "Должно быть от 2 до 30 символов");
     }
 
@@ -31,19 +25,32 @@ export default class FormValidator {
       return (error.textContent = "Здесь должна быть ссылка");
     }
 
-    this.button.removeAttribute("disabled");
-    this.button.classList.remove("button_disabled");
     error.textContent = "";
   }
 
-  // setSubmitButtonState - метод, меняющий состояние кнопки сабмита.
+  // setSubmitButtonState - метод, меняющий состояние кнопки .
   setSubmitButtonState(form, button) {
-    if (form.checkValidity()) {
+    const name = document.getElementById("name");
+    const job = document.getElementById("job");
+    const name1 = document.getElementById("name1");
+    const job1 = document.getElementById("job1");
+
+    if (
+      name.checkValidity() &&
+      job.checkValidity() &&
+      name1.checkValidity() &&
+      job1.checkValidity()
+    ) {
       button.removeAttribute("disabled");
       button.classList.remove("button_disabled");
       return;
     }
-    if (!form.checkValidity()) {
+    if (
+      !name.checkValidity() ||
+      !job.checkValidity() ||
+      !name1.checkValidity() ||
+      !job1.checkValidity()
+    ) {
       button.setAttribute("disabled", true);
       button.classList.add("button_disabled");
       return;
