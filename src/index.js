@@ -8,7 +8,7 @@ import PopupWithForm from "./js/PopupWithForm";
 import UserInfo from "./js/UserInfo";
 
 import "./style.css";
-import { serverUrl } from './config';
+import { serverUrl } from "./config";
 
 (() => {
   const placesList = document.querySelector(".places-list"); //placesList - родитель кнопки "Лайк" и "Корзина"
@@ -27,8 +27,8 @@ import { serverUrl } from './config';
     baseUrl: `${serverUrl}`,
     headers: {
       authorization: "24efeac8-6c91-4328-9f60-c8c7ed524d9c",
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+    },
   });
   const card = new Card();
   const cardList = new CardList(placesList, card);
@@ -48,7 +48,7 @@ import { serverUrl } from './config';
     document.querySelector(".user-info__photo")
   );
 
-  const myID = "767ab2acd59351e1d6e3d7fd";// нужна для удаления карточки
+  const myID = "767ab2acd59351e1d6e3d7fd"; // нужна для удаления карточки
   /*Экземпляры для валидации (слушатели внутри класса FormValidator)*/
   //const formValidNewPlace = new FormValidator(document.querySelector(".popup"));
   const formValidEditProfile = new FormValidator(
@@ -58,6 +58,10 @@ import { serverUrl } from './config';
   //   document.querySelector(".popup_avatar")
   // );
 
+  const btnSaveEditedProfile = document.querySelector(".popup__button_save");
+  btnSaveEditedProfile.addEventListener("click", () => {
+    console.log("btnSaveEditedProfile");
+  });
   /* -----Слушатели событий----- */
 
   //Открытие попапа Новое место
@@ -67,7 +71,6 @@ import { serverUrl } from './config';
 
   //Открытие попапа Редак-ть профиль
   buttonEditProfile.addEventListener("click", () => {
-    console.log(111)
     popupEditProfile.open();
     userInfo.setUserInfo(); //подгужаем данные из верстки в инпуты
   });
@@ -101,7 +104,7 @@ import { serverUrl } from './config';
     document.querySelector(".popup__button").textContent = "Загрузка...";
     api
       .addCard(newCardForm.elements.name.value, newCardForm.elements.link.value)
-      .then(data => {
+      .then((data) => {
         const cardElement = card.create(
           data.name,
           data.link,
@@ -117,7 +120,7 @@ import { serverUrl } from './config';
         newCardPopup.close();
         newCardForm.querySelector("button").textContent = "+";
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(`Ошибка: ${err}`);
       });
   });
@@ -128,15 +131,19 @@ import { serverUrl } from './config';
       event.target.classList.contains("place-card__delete-icon_visible") &&
       event.target.closest(".place-card").getAttribute("ownerID") === myID
     ) {
-      const result = window.confirm("Вы действительно хотите удалить эту карточку?");
+      const result = window.confirm(
+        "Вы действительно хотите удалить эту карточку?"
+      );
       if (result) {
-        const cardId = event.target.closest(".place-card").getAttribute("cardID");
+        const cardId = event.target
+          .closest(".place-card")
+          .getAttribute("cardID");
         api
           .deleteCard(`${cardId}`)
-          .then(data => {
+          .then((data) => {
             console.log(data);
           })
-          .catch(err => {
+          .catch((err) => {
             console.log(`Удаление неуспешно: ${err}`);
           });
 
@@ -152,11 +159,11 @@ import { serverUrl } from './config';
       const cardId = event.target.closest(".place-card").getAttribute("cardID");
       api
         .removeLike(`${cardId}`)
-        .then(data => {
+        .then((data) => {
           //event.target.nextElementSibling это div с количеством лайков
           card.like(event, data.likes.length, event.target.nextElementSibling);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(`Снятие лайка НЕ успешно: ${err}`);
         });
       //Если был клик по бесцветному сердечку:
@@ -164,10 +171,10 @@ import { serverUrl } from './config';
       const cardId = event.target.closest(".place-card").getAttribute("cardID");
       api
         .addLike(`${cardId}`)
-        .then(data => {
+        .then((data) => {
           card.like(event, data.likes.length, event.target.nextElementSibling);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(`Постановка лайка НЕ успешна: ${err}`);
         });
     }
@@ -182,14 +189,14 @@ import { serverUrl } from './config';
         editProfileForm.username.value,
         editProfileForm.job.value
       )
-      .then(data => {
+      .then((data) => {
         userInfo.updateUserInfo(data);
 
         editProfileForm.reset();
         popupEditProfile.close();
         editProfileForm.querySelector("button").textContent = "Сохранить";
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(`Ошибка: ${err}`);
       });
   });
@@ -199,14 +206,13 @@ import { serverUrl } from './config';
     event.preventDefault();
     api
       .sendServerAvatar(formAvatar.elements.avatar.value)
-      .then(data => {
+      .then((data) => {
         userInfo.updateUserAvatar(data);
         formAvatar.reset();
         popupAvatar.close();
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(`Ошибка: ${err}`);
       });
   });
 })();
-

@@ -2,8 +2,10 @@ export default class FormValidator {
   constructor(popup) {
     this.form = popup.querySelector(".popup__form_edit");
     this.button = this.form.querySelector("button");
-    // this.name = document.querySelector("name");
-    // this.job = document.querySelector("job");
+    this.name =  this.form.querySelector(".popup__input_type_name");
+    this.job =  this.form.querySelector(".popup__input_type_job");
+    this.name1 =  this.form.querySelector(".popup__input_type_name1");
+    this.job1 =  this.form.querySelector(".popup__input_type_job1");
 
     this.form.addEventListener("input", this.setEventListeners.bind(this));
   }
@@ -21,35 +23,31 @@ export default class FormValidator {
       return (error.textContent = "Должно быть от 2 до 30 символов");
     }
 
-    if (input.validity.typeMismatch) {
-      return (error.textContent = "Здесь должна быть ссылка");
-    }
-
     error.textContent = "";
   }
 
   // setSubmitButtonState - метод, меняющий состояние кнопки .
-  setSubmitButtonState(form, button) {
-    const name = document.getElementById("name");
-    const job = document.getElementById("job");
-    const name1 = document.getElementById("name1");
-    const job1 = document.getElementById("job1");
+  setSubmitButtonState(button) {
+    // const name = document.getElementById("name");
+    // const job = document.getElementById("job");
+    // const name1 = document.getElementById("name1");
+    // const job1 = document.getElementById("job1");
 
     if (
-      name.checkValidity() &&
-      job.checkValidity() &&
-      name1.checkValidity() &&
-      job1.checkValidity()
+      this.name.checkValidity() &&
+      this.job.checkValidity() &&
+      this.name1.checkValidity() &&
+      this.job1.checkValidity()
     ) {
       button.removeAttribute("disabled");
       button.classList.remove("button_disabled");
       return;
     }
     if (
-      !name.checkValidity() ||
-      !job.checkValidity() ||
-      !name1.checkValidity() ||
-      !job1.checkValidity()
+      !this.name.checkValidity() ||
+      !this.job.checkValidity() ||
+      !this.name1.checkValidity() ||
+      !this.job1.checkValidity()
     ) {
       button.setAttribute("disabled", true);
       button.classList.add("button_disabled");
@@ -62,6 +60,8 @@ export default class FormValidator {
       event.target,
       event.target.closest(".input-container").querySelector(".input__error")
     );
-    this.setSubmitButtonState(this.form, this.button);
+    // this.setSubmitButtonState(this.form, this.button);
+    this.setSubmitButtonState(this.button);
+
   }
 }
