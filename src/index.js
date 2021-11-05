@@ -50,13 +50,13 @@ import { serverUrl } from './config';
 
   const myID = "767ab2acd59351e1d6e3d7fd";// нужна для удаления карточки
   /*Экземпляры для валидации (слушатели внутри класса FormValidator)*/
-  const formValidNewPlace = new FormValidator(document.querySelector(".popup"));
+  //const formValidNewPlace = new FormValidator(document.querySelector(".popup"));
   const formValidEditProfile = new FormValidator(
     document.querySelector(".popup_edit")
   );
-  const formValidAvatar = new FormValidator(
-    document.querySelector(".popup_avatar")
-  );
+  // const formValidAvatar = new FormValidator(
+  //   document.querySelector(".popup_avatar")
+  // );
 
   /* -----Слушатели событий----- */
 
@@ -67,6 +67,7 @@ import { serverUrl } from './config';
 
   //Открытие попапа Редак-ть профиль
   buttonEditProfile.addEventListener("click", () => {
+    console.log(111)
     popupEditProfile.open();
     userInfo.setUserInfo(); //подгужаем данные из верстки в инпуты
   });
@@ -80,19 +81,19 @@ import { serverUrl } from './config';
   placesList.addEventListener("click", popupImage.open.bind(popupImage));
 
   // Отображение массива карточек
-  window.addEventListener("load", () => {
-    Promise.all([api.getInitialCards(), api.getUserInfo()])
-      .then(
-        ([initialCards, userData]) => {
-          cardList.render(initialCards, userData._id);
-          userInfo.updateUserInfo(userData);
-          userInfo.updateUserAvatar(userData)
-        })
-      .catch((err) => {
-        alert(err.message);
-        console.log(err);
-      });
-  });
+  // window.addEventListener("load", () => {
+  //   Promise.all([api.getInitialCards(), api.getUserInfo()])
+  //     .then(
+  //       ([initialCards, userData]) => {
+  //         cardList.render(initialCards, userData._id);
+  //         userInfo.updateUserInfo(userData);
+  //         userInfo.updateUserAvatar(userData)
+  //       })
+  //     .catch((err) => {
+  //       alert(err.message);
+  //       console.log(err);
+  //     });
+  // });
 
   //Добавление новой карточки
   newCardForm.addEventListener("submit", function (event) {
